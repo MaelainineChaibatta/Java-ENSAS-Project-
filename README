@@ -1,4 +1,4 @@
-```bash
+
 ┌─────────────────────────────────────┐
 │  CUSTOMER (Frontend/Client)         │  ← Orders food
 │  "I want a burger"                  │
@@ -19,7 +19,7 @@
                │
 ┌──────────────▼──────────────────────┐
 │  STORAGE (Repository Layer)         │  ← Gets ingredients
-│  - Fetches from fridge/pantry      │
+│  - Fetches from fridge/pantry       │
 │  - Stores leftovers                 │
 └──────────────┬──────────────────────┘
                │
@@ -27,6 +27,3 @@
 │  PANTRY (Database)                  │  ← Where everything is stored
 │  - Raw ingredients stored here      │
 └─────────────────────────────────────┘
-```
-
-### W estopped here :  ÉTAPE 4 — Service (IMPLEMENTATION) 📍 services/impl/UserServiceImpl.java
