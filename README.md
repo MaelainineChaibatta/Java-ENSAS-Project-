@@ -1,6 +1,4 @@
-# University Events Project - Progress
-
-## Current Status: ✅ Completed & Pushed to GitHub
+# University Events Project - Notices and structure
 
 ### Architecture Overview
 
@@ -37,78 +35,6 @@ The project follows a clean layered architecture:
 
 ---
 
-## 📍 NEXT STEP TO IMPLEMENT
-
-### Missing: `UserServiceImpl.java`
-
-**Location:** `src/main/java/ma/enset/univ_events/services/impl/UserServiceImpl.java`
-
-**Status:** ❌ NOT YET CREATED
-
-Create this file with the following code:
-
-```java
-package ma.enset.univ_events.services.impl;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-
-import ma.enset.univ_events.entities.User;
-import ma.enset.univ_events.repositories.UserRepository;
-import ma.enset.univ_events.services.interfaces.UserService;
-import ma.enset.univ_events.dtos.UserDTO;
-import ma.enset.univ_events.mappers.UserMapper;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-@Service
-@RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
-
-    private final UserRepository userRepository;
-
-    @Override
-    public UserDTO createUser(UserDTO userDTO) {
-        User user = UserMapper.toEntity(userDTO);
-        User savedUser = userRepository.save(user);
-        return UserMapper.toDTO(savedUser);
-    }
-
-    @Override
-    public List<UserDTO> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserMapper::toDTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public UserDTO getUserById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        return UserMapper.toDTO(user);
-    }
-
-    @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
-}
-```
-
----
-
-## ✅ Issues Fixed in This Session
-
-| Issue | File | Fix |
-|-------|------|-----|
-| Wrong package declaration | `User.java` | Removed `java.` prefix → `package ma.enset.univ_events.entities;` |
-| ID auto-assignment | `UserMapper.java` | Removed `user.setId(dto.getId())` in `toEntity()` method |
-| Type mismatch | `UserMapper.java` | Added `.toString()` and `valueOf()` for enum conversion |
-
----
-
 ## 📚 Project Structure
 
 ```
@@ -140,30 +66,18 @@ java_ensas_project/
 
 ---
 
-## 🛠️ Tech Stack
 
-- **Framework:** Spring Boot
-- **Language:** Java 17+
-- **Database:** JPA/Hibernate
-- **Build Tool:** Maven
-- **Validation:** Jakarta Validation
-- **Annotations:** Lombok
 
----
+## Notice : 
+public static EventDTO toDTO(Event event)
 
-## 🚀 Quick Start
+**What it does:** Converts database object to user-friendly object
 
-```bash
-# Clone & build
-git clone https://github.com/MaelainineChaibatta/Java-ENSAS-Project-.git
-cd java_ensas_project
-mvn clean install
+**When to use:** When reading data FROM database TO send to user
 
-# Run
-mvn spring-boot:run
-```
+**Flow:**
 
----
+Database (Event) → Mapper → User (EventDTO)
 
-**Last Updated:** December 13, 2025  
-**Repository:** [GitHub](https://github.com/MaelainineChaibatta/Java-ENSAS-Project-)
+
+## next step test using swagger!
