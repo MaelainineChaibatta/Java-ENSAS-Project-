@@ -6,19 +6,31 @@ import ma.enset.univ_events.entities.User;
 // Mapper class to convert between User entity and UserDTO its role is to separate the entity layer from the DTO layer 
 public class UserMapper {
     // convert User entity to UserDTO
-    public static UserDTO toDTO(User user){
+    public static UserDTO toDTO(User user) {
         UserDTO dto = new UserDTO();
-        dto.setId(user.getId());
         dto.setUsername(user.getUsername());
+        dto.setEmail(user.getEmail());
+        dto.setPassword(user.getPassword());
         dto.setRole(user.getRole().toString());
         return dto;
     }
+
     // convert UserDTO to User entity
-    public static User toEntity(UserDTO dto){
+    public static User toEntity(UserDTO dto) {
         User user = new User();
         user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
         user.setRole(User.Role.valueOf(dto.getRole()));
         return user;
     }
-    
+
+    // POUR UPDATE
+    public static void updateEntity(User user, UserDTO dto) {
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPassword(dto.getPassword());
+        user.setRole(User.Role.valueOf(dto.getRole()));
+    }
+
 }
