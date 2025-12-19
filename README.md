@@ -68,16 +68,4 @@ java_ensas_project/
 
 
 
-## Notice : 
-public static EventDTO toDTO(Event event)
-
-**What it does:** Converts database object to user-friendly object
-
-**When to use:** When reading data FROM database TO send to user
-
-**Flow:**
-
-Database (Event) → Mapper → User (EventDTO)
-
-
-## next step test using swagger!
+## next step is  1. Authentication Login ⚠️ + ...
